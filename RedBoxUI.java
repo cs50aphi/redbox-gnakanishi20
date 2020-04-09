@@ -35,7 +35,14 @@ public class RedBoxUI
          {
             System.out.println("What movie would you like to rent?");
             title = sn.nextLine();
-
+            if(rm.rent(title) == true)
+            {
+               System.out.println("rent successful!");
+            }
+            else
+            {
+               System.out.println("Movie entered not availiable choose again.");
+            }
             // Complete the code to rent a movie. This code should let the user
             // know if the movie was rented successfully or not (not could occur if
             // the movie they enter is not available).
@@ -44,7 +51,8 @@ public class RedBoxUI
          {
             System.out.println("What movie would you like to return?");
             title = sn.nextLine();
-            
+            rm.returnMovie(title);
+            System.out.println("Movie returned!");
             // Complete the code to return a movie. Make sure to include a
             // message after the movie has been returned.
          
@@ -53,7 +61,15 @@ public class RedBoxUI
          {
             System.out.println("What movie would you like to search for?");
             title = sn.nextLine();
-            
+            int found = rm.searchForMovie(title);
+            if(found != -1)
+            {
+               System.out.println("movie found!");
+            }
+            else
+            {
+               System.out.println("movie not in stock");
+            }
             // Complete the code to search for a movie.  Make sure to include
             // messages that inform the user whether the movie was found or not.
          

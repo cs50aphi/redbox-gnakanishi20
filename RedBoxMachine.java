@@ -12,8 +12,10 @@ import java.io.FileNotFoundException;
 public class RedBoxMachine
 {
    //Create an instance variable to hold all of the DVDs.
-
+   ArrayList<DVD> list = new ArrayList<DVD>();
+   private int numCop;
    /** the list of DVDs */
+   
    
    /** Constructs a Redbox Machine and fills it with DVDs
     *  Reads the file MovieList.txt so make sure that the
@@ -40,6 +42,14 @@ public class RedBoxMachine
       // Complete the method to search for a movie.
       // If placement is -1, then the movie isn't there.
       // Find the index of i if the movie is there.
+      for(int i = 0; i <= list.size(); i++)
+      {
+         if(get.list(i).equals(title))
+         {
+            return i;
+         }
+      }
+      return -1;
    }
    
    /** Returns the titles of all available DVD's in
@@ -50,7 +60,7 @@ public class RedBoxMachine
    public ArrayList<String> getAvailableMovies()
    {
       // Complete the method to get all available movie titles.
-
+      return list;
    }
    
    /** Allows a customer to rent a movie. When the movie is rented, the number 
@@ -63,6 +73,23 @@ public class RedBoxMachine
    public boolean rent(String title)
    {
       // Complete the method to rent a movie.
+      for(int i = 0; i <= list.size(); i++)
+      {
+         if(get.list(i).equals(title))
+         {
+            numCop = getNumCopies();
+            copies--;
+            if(numCop = 0)
+            {
+               list.remove(new DVD(title));
+            }
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
    }
    
    /** Allows a customer to return a movie. When the movie is returned, the number 
@@ -74,6 +101,17 @@ public class RedBoxMachine
    public DVD returnMovie(String title)
    {
       // Complete the method to return a movie.
+      for(int i = 0; i <= list.size(); i++)
+      {
+         if(get.list(i).equals(title))
+         {
+            copies++;
+         }
+         else
+         {
+            list.add(new DVD(title));
+         }
+      }
    }
    
    /** This method fills the machine with movies. You do not have

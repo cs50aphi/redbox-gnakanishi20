@@ -3,9 +3,10 @@ public class DVD
    //Declare the class variables.
    
    /** the title of the DVD */
+   private String title;
 
    /** the number of available copies */
-
+   private int copies;
    
    /** Constructs a DVD object and sets the number of copies
     *  to 1.
@@ -14,18 +15,24 @@ public class DVD
     
    public DVD(String t)
    {
+      this.title = title;
+      copies = 1;
    }
    
    /** Increments the number of available copies of this DVD.
     */
    public void incrementCopies()
    {
+      this.title = title;
+      copies += 1;
    }
    
    /** Decrements the number of available copies of this DVD.
     */
    public void decrementCopies()
    {
+      this.title = title;
+      copies -= 1;
    }
    
    /** Gets the title of this DVD.
@@ -34,6 +41,7 @@ public class DVD
     */
    public String getTitle()
    {
+      return title;
    }
    
    /** Gets the number of available copies for this DVD.
@@ -42,6 +50,7 @@ public class DVD
     */
    public int getNumCopies()
    {
+      return copies;
    }
    
    /** Returns a representation of this DVD object as a
@@ -52,7 +61,8 @@ public class DVD
     
    public String toString()
    {
-      return;
+      String format = title + copies;
+      return format;
    }
    
 }
