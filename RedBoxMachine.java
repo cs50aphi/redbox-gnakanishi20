@@ -42,9 +42,9 @@ public class RedBoxMachine
       // Complete the method to search for a movie.
       // If placement is -1, then the movie isn't there.
       // Find the index of i if the movie is there.
-      for(int i = 0; i <= list.size(); i++)
+      for(int i = 0; i < list.size(); i++)
       {
-         if(list.get(i).equals(title))
+         if(list.get(i).getTitle().equals(title))
          {
             return i;
          }
@@ -61,7 +61,7 @@ public class RedBoxMachine
    {
       // Complete the method to get all available movie titles.
       ArrayList<String> hold = new ArrayList<String>();
-      for(int i = 0; i <= list.size(); i++)
+      for(int i = 0; i < list.size(); i++)
       {
          hold.add(list.get(i).getTitle());
       }
@@ -78,24 +78,21 @@ public class RedBoxMachine
    public boolean rent(String title)
    {
       // Complete the method to rent a movie.
-      for(int i = 0; i <= list.size(); i++)
+      for(int i = 0; i < list.size(); i++)
       {
-         if(list.get(i).equals(title))
+         if(list.get(i).getTitle().equals(title))
          {
-            numCop = DVD.getNumCopies();
-            DVD.decrementCopies();
+            //since we have two class files but we put the list.get(i) in front because were callin one instance of that class file and then changing that one instance specifically so we need something to identify it with
+            list.get(i).decrementCopies();
+            numCop = list.get(i).getNumCopies();
             if(numCop == 0)
             {
-               list.remove(new DVD(title));
+               list.remove(list.get(i));
             }
             return true;
          }
-         else
-         {
-            return false;
-         }
       }
-      return true;
+      return false;
    }
    
    /** Allows a customer to return a movie. When the movie is returned, the number 
@@ -107,17 +104,16 @@ public class RedBoxMachine
    public DVD returnMovie(String title)
    {
       // Complete the method to return a movie.
-      for(int i = 0; i <= list.size(); i++)
+      for(int i = 0; i < list.size(); i++)
       {
          if(list.get(i).getTitle().equals(title))
          {
             list.get(i).incrementCopies();
-         }
-         else
-         {
-            list.add(new DVD(title));
+            return list.get(i);
          }
       }
+      list.add(new DVD(title));
+      return list.get(list.size() - 1);
    }
    
    /** This method fills the machine with movies. You do not have
