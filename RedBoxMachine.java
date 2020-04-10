@@ -44,7 +44,7 @@ public class RedBoxMachine
       // Find the index of i if the movie is there.
       for(int i = 0; i <= list.size(); i++)
       {
-         if(get.list(i).equals(title))
+         if(list.get(i).equals(title))
          {
             return i;
          }
@@ -60,7 +60,12 @@ public class RedBoxMachine
    public ArrayList<String> getAvailableMovies()
    {
       // Complete the method to get all available movie titles.
-      return list;
+      ArrayList<String> hold = new ArrayList<String>();
+      for(int i = 0; i <= list.size(); i++)
+      {
+         hold.add(list.get(i).getTitle());
+      }
+      return hold;
    }
    
    /** Allows a customer to rent a movie. When the movie is rented, the number 
@@ -75,11 +80,11 @@ public class RedBoxMachine
       // Complete the method to rent a movie.
       for(int i = 0; i <= list.size(); i++)
       {
-         if(get.list(i).equals(title))
+         if(list.get(i).equals(title))
          {
-            numCop = getNumCopies();
-            copies--;
-            if(numCop = 0)
+            numCop = DVD.getNumCopies();
+            DVD.decrementCopies();
+            if(numCop == 0)
             {
                list.remove(new DVD(title));
             }
@@ -90,6 +95,7 @@ public class RedBoxMachine
             return false;
          }
       }
+      return true;
    }
    
    /** Allows a customer to return a movie. When the movie is returned, the number 
@@ -103,9 +109,9 @@ public class RedBoxMachine
       // Complete the method to return a movie.
       for(int i = 0; i <= list.size(); i++)
       {
-         if(get.list(i).equals(title))
+         if(list.get(i).getTitle().equals(title))
          {
-            copies++;
+            list.get(i).incrementCopies();
          }
          else
          {

@@ -6,7 +6,7 @@ public class DVD
    private String title;
 
    /** the number of available copies */
-   private int copies;
+   public int copies;
    
    /** Constructs a DVD object and sets the number of copies
     *  to 1.
@@ -15,7 +15,7 @@ public class DVD
     
    public DVD(String t)
    {
-      this.title = title;
+      this.title = t;
       copies = 1;
    }
    
@@ -23,16 +23,14 @@ public class DVD
     */
    public void incrementCopies()
    {
-      this.title = title;
-      copies += 1;
+      copies++;
    }
    
    /** Decrements the number of available copies of this DVD.
     */
    public void decrementCopies()
    {
-      this.title = title;
-      copies -= 1;
+      copies--;
    }
    
    /** Gets the title of this DVD.
